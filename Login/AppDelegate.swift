@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  ShareSDK简洁版-Swift
+//  Login
 //
-//  Created by lisk@uuzu.com on 15/7/31.
-//  Copyright (c) 2015年 MOB. All rights reserved.
+//  Created by ChingHoi on 15/7/31.
+//  Copyright (c) 2018年 CHK. All rights reserved.
 //
 
 import UIKit

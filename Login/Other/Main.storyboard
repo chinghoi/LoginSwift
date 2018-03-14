@@ -21,8 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-ve-kGZ">
-                                <rect key="frame" x="128" y="325" width="120" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-ve-kGZ">
+                                <rect key="frame" x="127" y="318" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3sJ-9p-lM7"/>
                                     <constraint firstAttribute="width" constant="120" id="cI5-Ig-X04"/>
@@ -34,10 +34,34 @@
                                     <action selector="OAuthWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="U15-kI-G7d"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMN-o9-Yvh">
+                                <rect key="frame" x="127" y="381" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4It-Ca-Noa"/>
+                                    <constraint firstAttribute="width" constant="120" id="AEG-gz-a7Z"/>
+                                </constraints>
+                                <state key="normal" title="取消授权"/>
+                                <connections>
+                                    <action selector="close:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HZr-6S-JjP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9l-dt-6se">
+                                <rect key="frame" x="127" y="419" width="120" height="30"/>
+                                <state key="normal" title="授权信息查询"/>
+                                <connections>
+                                    <action selector="searchInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gEc-VE-K01"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fVN-ve-kGZ" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="mct-i9-PP4"/>
+                            <constraint firstItem="fVN-ve-kGZ" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="80l-bG-BOU"/>
+                            <constraint firstItem="fVN-ve-kGZ" firstAttribute="leading" secondItem="TMN-o9-Yvh" secondAttribute="leading" id="Eyi-mb-x5o"/>
+                            <constraint firstItem="TMN-o9-Yvh" firstAttribute="top" secondItem="fVN-ve-kGZ" secondAttribute="bottom" constant="33" id="N18-dh-oOA"/>
+                            <constraint firstItem="E9l-dt-6se" firstAttribute="leading" secondItem="TMN-o9-Yvh" secondAttribute="leading" id="WKH-Fc-kfW"/>
+                            <constraint firstItem="fVN-ve-kGZ" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="XFc-kc-9GK"/>
+                            <constraint firstItem="E9l-dt-6se" firstAttribute="top" secondItem="TMN-o9-Yvh" secondAttribute="bottom" constant="8" symbolic="YES" id="bh8-8s-rcA"/>
+                            <constraint firstItem="E9l-dt-6se" firstAttribute="trailing" secondItem="TMN-o9-Yvh" secondAttribute="trailing" id="sNl-s2-xEx"/>
                         </constraints>
                     </view>
                 </viewController>
