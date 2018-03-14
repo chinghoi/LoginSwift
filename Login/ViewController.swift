@@ -28,9 +28,33 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func sinaAuth(_ sender: UIButton) {
+        //获取授权
+        ShareSDK.getUserInfo(SSDKPlatformType.typeSinaWeibo) { (state: SSDKResponseState, user: SSDKUser?, error: Error?) in
+            switch state{
+            case SSDKResponseState.success: print("授权成功,用户信息为\(String(describing: user))\n ----- 授权凭证为\(String(describing: user?.credential))")
+            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+            case SSDKResponseState.cancel:  print("操作取消")
+            default:
+                break
+            }
+        }
+    }
+    @IBAction func weChatAuth(_ sender: UIButton) {
+        //获取授权
+        ShareSDK.getUserInfo(SSDKPlatformType.typeWechat) { (state: SSDKResponseState, user: SSDKUser?, error: Error?) in
+            switch state{
+            case SSDKResponseState.success: print("授权成功,用户信息为\(String(describing: user))\n ----- 授权凭证为\(String(describing: user?.credential))")
+            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+            case SSDKResponseState.cancel:  print("操作取消")
+            default:
+                break
+            }
+        }
+    }
+    
     //获取授权用户信息
- 
-    @IBAction func OAuth(sender: UIButton) {
+    @IBAction func qqAuth(sender: UIButton) {
 //        ShareSDK.authorize(SSDKPlatformType.typeWechat, settings: nil) { (state: SSDKResponseState, user: SSDKUser?, error: Error?) in
 //            
 //        }
@@ -59,12 +83,19 @@ class ViewController: UIViewController {
     @IBAction func close(_ sender: UIButton) {
         //取消授权
         ShareSDK.cancelAuthorize(SSDKPlatformType.typeQQ)
+        ShareSDK.cancelAuthorize(SSDKPlatformType.typeWechat)
+        ShareSDK.cancelAuthorize(SSDKPlatformType.typeSinaWeibo)
     }
     @IBAction func searchInfo(_ sender: UIButton) {
         //获取当前授权用户
-        let user = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
-        print("获取成功,用户信息为\(String(describing: user))")
-//        //获取用户授权信息时,若授权,则查询,反之,将会跳转到授权页面
+        
+        let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
+        print("获取成功,qq用户信息为\(String(describing: qqUser))")
+        let weChatuser = ShareSDK.currentUser(SSDKPlatformType.typeWechat)
+        print("获取成功,微信用户信息为\(String(describing: weChatuser))")
+        let sinaChatuser = ShareSDK.currentUser(SSDKPlatformType.typeSinaWeibo)
+        print("获取成功,微博用户信息为\(String(describing: sinaChatuser))")
+//        //获取用户授权信息时,若授权,则查询,反之 ,将会跳转到授权页面
 //        ShareSDK.getUserInfo(SSDKPlatformType.typeQQ) { (state: SSDKResponseState, user: SSDKUser?, error: Error?)  ->
 //            Void in
 //            switch state{
