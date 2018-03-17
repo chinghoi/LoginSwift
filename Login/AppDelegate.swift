@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import LeanCloud
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
+        // applicationId 即 App Id，applicationKey 是 App Key
+        LeanCloud.initialize(applicationID: "2WmtH4P8IOmnKd1pBHDu509t-gzGzoHsz", applicationKey: "9GqVmQEjr3vn2F6Grpkl3npL")
+        
         /**
         *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
         *  在将生成的AppKey传入到此方法中。我们Demo提供的appKey为内部测试使用，可能会修改配置信息，请不要使用。
@@ -71,8 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 {
                     case SSDKPlatformType.typeSinaWeibo:
                         //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                        appInfo?.ssdkSetupSinaWeibo(byAppKey: "568898243",
-                                                    appSecret: "38a4f8204cc784f81f9f0daaf31e02e3",
+                        appInfo?.ssdkSetupSinaWeibo(byAppKey: "2037972732",
+                                                    appSecret: "3159ea88770791c4f974bfe0e08bf338",
                                                     redirectUri: "http://www.sharesdk.cn",
                                                     authType: SSDKAuthTypeBoth)
                   

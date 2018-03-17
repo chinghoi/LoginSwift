@@ -1,0 +1,11 @@
+framework module LeanCloud {
+  umbrella header "LeanCloud-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module LeanCloud.Swift {
+    header "LeanCloud-Swift.h"
+    requires objc
+}

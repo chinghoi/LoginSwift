@@ -28,12 +28,12 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>pocketapp1234</string>
+				<string>wb2037972732</string>
 				<string>tb2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM</string>
 				<string>QQ05FB8B52</string>
 				<string>wx4868b35061f87885</string>
 				<string>tencent100371282</string>
 				<string>fb107704292745179</string>
-				<string>wb568898243</string>
 				<string>rm226427com.mob.demoShareSDKSwift</string>
 				<string>com.mob.demoShareSDK</string>
 			</array>
