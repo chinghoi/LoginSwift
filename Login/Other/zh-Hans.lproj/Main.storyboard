@@ -102,6 +102,14 @@
                                     <action selector="sinaAuth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1YJ-2H-F2s"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-gc-KQs">
+                                <rect key="frame" x="164" y="366" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="注册"/>
+                                <connections>
+                                    <action selector="btnRegistered:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6II-OL-s7C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -140,13 +148,52 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="passwdTextField" destination="Dlx-9R-wbq" id="kYk-11-ZN6"/>
-                        <outlet property="usrNameTextField" destination="Urt-8g-pgI" id="PVe-ab-g1Y"/>
+                        <outlet property="textFieldPasswd" destination="Dlx-9R-wbq" id="aCO-CY-SHn"/>
+                        <outlet property="textFieldUsrName" destination="Urt-8g-pgI" id="LLp-Yi-iFY"/>
+                        <segue destination="YD5-ly-aBm" kind="modal" identifier="registered" id="hCC-Q7-J4r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72.5" y="281.5"/>
+            <point key="canvasLocation" x="147" y="282"/>
+        </scene>
+        <!--Registered-->
+        <scene sceneID="mi2-nB-dqk">
+            <objects>
+                <viewController id="YD5-ly-aBm" userLabel="Registered" customClass="Registered" customModule="Login" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ICx-h9-Rpo"/>
+                        <viewControllerLayoutGuide type="bottom" id="b2B-B3-V1q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dy6-h1-kKA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFL-IN-Vg5">
+                                <rect key="frame" x="0.0" y="10" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" leftItemsSupplementBackButton="YES" id="yIn-fO-dU9">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="GX0-RC-eF7">
+                                            <connections>
+                                                <action selector="backWithSender:" destination="YD5-ly-aBm" id="sXb-16-Tvo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CFL-IN-Vg5" firstAttribute="leading" secondItem="dy6-h1-kKA" secondAttribute="leading" id="Pqn-T5-k7C"/>
+                            <constraint firstItem="CFL-IN-Vg5" firstAttribute="top" secondItem="dy6-h1-kKA" secondAttribute="top" constant="10" id="UrM-vu-VG3"/>
+                            <constraint firstAttribute="trailing" secondItem="CFL-IN-Vg5" secondAttribute="trailing" id="dxR-UF-fVj"/>
+                            <constraint firstItem="CFL-IN-Vg5" firstAttribute="top" secondItem="dy6-h1-kKA" secondAttribute="top" constant="10" id="rI5-pv-jhb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ApF-37-V50" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="638" y="282"/>
         </scene>
     </scenes>
 </document>

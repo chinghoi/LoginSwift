@@ -14,35 +14,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
-        
-        //获取沙盒的用户数据目录
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-        //拼接上文件名
-        let userFileName = path! + "/user.file"
-        let user0 = UserInfo()
-        let user2 = UserInfo()
-        user0.id = 0
-        user0.nickname = "chinghoi"
-        user0.email = "56465334@qq.com"
-        user0.password = "123456"
-        user0.qqbinding = false
-        user0.wechatbinding = false
-        user0.weibobinding = false
-        user2.id = 2
-        user2.nickname = "abcd"
-        user2.email = "110@qq.com"
-        user2.password = "123456"
-        user2.qqbinding = false
-        user2.wechatbinding = false
-        user2.weibobinding = false
-        //进行写文件
-        NSKeyedArchiver.archiveRootObject(user0, toFile: userFileName)
-        NSKeyedArchiver.archiveRootObject(user2, toFile: userFileName)
-        //将储存的数据进行读取
-        let userAnything = NSKeyedUnarchiver.unarchiveObject(withFile: userFileName) as! UserInfo
-        print("\(String(describing: userAnything.nickname)),\(user2.id)")
+//        //获取沙盒的用户数据目录
+//        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+//        //拼接上文件名
+//        let userFileName = path! + "/user.file"
+//        let user0 = UserInfo()
+//        let user2 = UserInfo()
+//        user0.id = 0
+//        user0.nickname = "chinghoi"
+//        user0.email = "56465334@qq.com"
+//        user0.password = "123456"
+//        user0.qqbinding = false
+//        user0.wechatbinding = false
+//        user0.weibobinding = false
+//        user2.id = 2
+//        user2.nickname = "abcd"
+//        user2.email = "110@qq.com"
+//        user2.password = "123456"
+//        user2.qqbinding = false
+//        user2.wechatbinding = false
+//        user2.weibobinding = false
+//        //进行写文件
+//        NSKeyedArchiver.archiveRootObject(user0, toFile: userFileName)
+//        NSKeyedArchiver.archiveRootObject(user2, toFile: userFileName)
+//        //将储存的数据进行读取
+//        let userAnything = NSKeyedUnarchiver.unarchiveObject(withFile: userFileName) as! UserInfo
+//        print("\(String(describing: userAnything.nickname)),\(user2.id)")
         
 //        //归档
 //        let data=NSMutableData()
@@ -71,17 +68,26 @@ class ViewController: UIViewController {
     }
     //点击空白处隐藏键盘
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        usrNameTextField.resignFirstResponder()
-        passwdTextField.resignFirstResponder()
+
+        textFieldUsrName.resignFirstResponder()
+        textFieldPasswd.resignFirstResponder()
     }
     
-    @IBOutlet weak var usrNameTextField: UITextField!
+    @IBOutlet weak var textFieldUsrName: UITextField!
     
-    @IBOutlet weak var passwdTextField: UITextField!
+    @IBOutlet weak var textFieldPasswd: UITextField!
     
     @IBAction func btnLogin(sender: AnyObject) {
-        print("usrName is \(String(describing: self.usrNameTextField.text))");
-        print("passwdLabel is \(String(describing: self.passwdTextField.text))");
+//        //登陆验证成功
+//        if true {
+//            //进行跳转到下一个页面
+//            self.performSegue(withIdentifier: "login", sender: self)
+//        }else{
+//            print("login fail")
+//        }
+        
+        print("usrName is \(String(describing: self.textFieldUsrName.text))");
+        print("passwdLabel is \(String(describing: self.textFieldPasswd.text))");
         
         let todo = LCObject(className: "Todo")
         //注册相关
@@ -99,6 +105,12 @@ class ViewController: UIViewController {
         
     }
 
+
+    @IBAction func btnRegistered(_ sender: UIButton) {
+        //进行跳转到注册页面
+        self.performSegue(withIdentifier: "registered", sender: self)
+        
+    }
     
     @IBAction func sinaAuth(_ sender: UIButton) {
 

@@ -23,12 +23,13 @@
 		C846E7B31B6B91B900522792 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C846E7B21B6B91B900522792 /* Images.xcassets */; };
 		C846E7B61B6B91B900522792 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C846E7B41B6B91B900522792 /* LaunchScreen.xib */; };
 		C846E8001B6B93C800522792 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C846E7FF1B6B93C800522792 /* ImageIO.framework */; };
-		C8FE00D91B6DF92500D7234C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FE00D81B6DF92500D7234C /* Main.storyboard */; };
 		DE247F1C1BB24C5F00225F1B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE247F1B1BB24C5F00225F1B /* AdSupport.framework */; };
 		DE3AB27A1DB47A0700C8787E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3AB2791DB47A0700C8787E /* SystemConfiguration.framework */; };
 		DE3AB27C1DB47A1000C8787E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3AB27B1DB47A1000C8787E /* CoreTelephony.framework */; };
 		E93A2368205D076000F79534 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93A2367205D076000F79534 /* MobileCoreServices.framework */; };
+		E946087B205EA88D00328E08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946087D205EA88D00328E08 /* Main.storyboard */; };
 		E9506468205BC46D00DD704E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9506467205BC46D00DD704E /* UserInfo.swift */; };
+		E958776F205E59BF00AFD342 /* Registered.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958776E205E59BF00AFD342 /* Registered.swift */; };
 		E97C166820594EA000A716D2 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E97C164120594EA000A716D2 /* WeiboSDK.bundle */; };
 		E97C166920594EA000A716D2 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C164220594EA000A716D2 /* libWeiboSDK.a */; };
 		E97C166A20594EA000A716D2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E97C164820594EA000A716D2 /* README.txt */; };
@@ -74,17 +75,18 @@
 		C846E7A61B6B91B900522792 /* Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C846E7AA1B6B91B900522792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C846E7AB1B6B91B900522792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C846E7AD1B6B91B900522792 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C846E7AD1B6B91B900522792 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C846E7B21B6B91B900522792 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		C846E7B51B6B91B900522792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C846E7CC1B6B92AB00522792 /* Login-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Login-Bridging-Header.h"; path = "../Login-Bridging-Header.h"; sourceTree = "<group>"; };
 		C846E7FF1B6B93C800522792 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		C8FE00D81B6DF92500D7234C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DE247F1B1BB24C5F00225F1B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DE3AB2791DB47A0700C8787E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DE3AB27B1DB47A1000C8787E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E93A2367205D076000F79534 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E946087C205EA88D00328E08 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		E9506467205BC46D00DD704E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		E958776E205E59BF00AFD342 /* Registered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registered.swift; sourceTree = "<group>"; };
 		E97C164120594EA000A716D2 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		E97C164220594EA000A716D2 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		E97C164320594EA000A716D2 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				C846E7AB1B6B91B900522792 /* AppDelegate.swift */,
 				C846E7AD1B6B91B900522792 /* ViewController.swift */,
 				E9506467205BC46D00DD704E /* UserInfo.swift */,
+				E958776E205E59BF00AFD342 /* Registered.swift */,
 				C846E7CB1B6B928600522792 /* Other */,
 				C846E7A91B6B91B900522792 /* Supporting Files */,
 			);
@@ -253,7 +256,7 @@
 				C846E8091B6C702000522792 /* 导入的依赖库 */,
 				C846E7B21B6B91B900522792 /* Images.xcassets */,
 				C846E7B41B6B91B900522792 /* LaunchScreen.xib */,
-				C8FE00D81B6DF92500D7234C /* Main.storyboard */,
+				E946087D205EA88D00328E08 /* Main.storyboard */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -479,7 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E97C166D20594EA000A716D2 /* README.md in Resources */,
-				C8FE00D91B6DF92500D7234C /* Main.storyboard in Resources */,
+				E946087B205EA88D00328E08 /* Main.storyboard in Resources */,
 				C846E7B61B6B91B900522792 /* LaunchScreen.xib in Resources */,
 				E97C167020594EA000A716D2 /* ShareSDK.bundle in Resources */,
 				E97C167120594EA000A716D2 /* ShareSDKUI.bundle in Resources */,
@@ -554,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C846E7AE1B6B91B900522792 /* ViewController.swift in Sources */,
+				E958776F205E59BF00AFD342 /* Registered.swift in Sources */,
 				C846E7AC1B6B91B900522792 /* AppDelegate.swift in Sources */,
 				E9506468205BC46D00DD704E /* UserInfo.swift in Sources */,
 			);
@@ -569,6 +573,14 @@
 			);
 			name = LaunchScreen.xib;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E946087D205EA88D00328E08 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E946087C205EA88D00328E08 /* zh-Hans */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

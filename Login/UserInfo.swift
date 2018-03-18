@@ -8,7 +8,6 @@
 
 import UIKit
 
-//参考资料 Swift从入门到精通 作者：张益珲
 
 //遵守NScoding协议
 class UserInfo: NSObject, NSCoding {
