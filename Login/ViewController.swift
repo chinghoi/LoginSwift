@@ -69,13 +69,13 @@ class ViewController: UIViewController {
     //点击空白处隐藏键盘
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        textFieldUsrName.resignFirstResponder()
-        textFieldPasswd.resignFirstResponder()
+        textFieldUsrName?.resignFirstResponder()
+        textFieldPasswd?.resignFirstResponder()
     }
     
-    @IBOutlet weak var textFieldUsrName: UITextField!
+    @IBOutlet weak var textFieldUsrName: UITextField?
     
-    @IBOutlet weak var textFieldPasswd: UITextField!
+    @IBOutlet weak var textFieldPasswd: UITextField?
     
     @IBAction func btnLogin(sender: AnyObject) {
 //        //登陆验证成功
@@ -86,8 +86,8 @@ class ViewController: UIViewController {
 //            print("login fail")
 //        }
         
-        print("usrName is \(String(describing: self.textFieldUsrName.text))");
-        print("passwdLabel is \(String(describing: self.textFieldPasswd.text))");
+        print("usrName is \(String(describing: self.textFieldUsrName?.text))");
+        print("passwdLabel is \(String(describing: self.textFieldPasswd?.text))");
         
         let todo = LCObject(className: "Todo")
         //注册相关
