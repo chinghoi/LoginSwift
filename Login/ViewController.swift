@@ -13,107 +13,57 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        //获取沙盒的用户数据目录
-//        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-//        //拼接上文件名
-//        let userFileName = path! + "/user.file"
-//        let user0 = UserInfo()
-//        let user2 = UserInfo()
-//        user0.id = 0
-//        user0.nickname = "chinghoi"
-//        user0.email = "56465334@qq.com"
-//        user0.password = "123456"
-//        user0.qqbinding = false
-//        user0.wechatbinding = false
-//        user0.weibobinding = false
-//        user2.id = 2
-//        user2.nickname = "abcd"
-//        user2.email = "110@qq.com"
-//        user2.password = "123456"
-//        user2.qqbinding = false
-//        user2.wechatbinding = false
-//        user2.weibobinding = false
-//        //进行写文件
-//        NSKeyedArchiver.archiveRootObject(user0, toFile: userFileName)
-//        NSKeyedArchiver.archiveRootObject(user2, toFile: userFileName)
-//        //将储存的数据进行读取
-//        let userAnything = NSKeyedUnarchiver.unarchiveObject(withFile: userFileName) as! UserInfo
-//        print("\(String(describing: userAnything.nickname)),\(user2.id)")
-        
-//        //归档
-//        let data=NSMutableData()
-//        let archiver=NSKeyedArchiver(forWritingWith: data)
-//        archiver.encode(["chinghoi","yzk"], forKey: "data");
-//        archiver.encode("测试消息", forKey: "tip");
-//        archiver.finishEncoding()
-//        data.write(toFile: userFileName, atomically: true)
-//
-//        //反归档
-//        let unarchiveData=NSData(contentsOfFile: userFileName)
-//        let unarchiver=NSKeyedUnarchiver(forReadingWith: unarchiveData! as Data)
-//        let decodeData=unarchiver.decodeObject(forKey: "data") as! NSArray
-//        let decodeTip=unarchiver.decodeObject(forKey: "tip") as! NSString
-//        NSLog("data=%@,tip=%@",decodeData,decodeTip)
-        
-//        let dicUser: NSDictionary = ["id":"2018","nickname":"chinghoi","sex":"男","age":"18","email":"2018@qq.com","mobile":"12345678910","status":"1","qq_binding":"0","wechat_binding":"0","weibo_binding":"0","phone_binding":"0"]
-//
-//        //进行写文件
-//        dicUser.write(toFile: userFileName, atomically: true)
-        //将储存的Plist文件数据进行读取
-//        let dicUserRes = NSDictionary(contentsOfFile: userFileName)
-//        print(dicUserRes ?? "dicRes 为 nil")
-        
-        
     }
     //点击空白处隐藏键盘
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        textFieldUsrName?.resignFirstResponder()
+        textFieldUsr?.resignFirstResponder()
         textFieldPasswd?.resignFirstResponder()
     }
     
-    @IBOutlet weak var textFieldUsrName: UITextField?
+    @IBOutlet weak var textFieldUsr: UITextField?
     
     @IBOutlet weak var textFieldPasswd: UITextField?
     
+    //登录相关
     @IBAction func btnLogin(sender: AnyObject) {
-//        //登陆验证成功
-//        if true {
-//            //进行跳转到下一个页面
-//            self.performSegue(withIdentifier: "login", sender: self)
-//        }else{
-//            print("login fail")
-//        }
-        
-        print("usrName is \(String(describing: self.textFieldUsrName?.text))");
-        print("passwdLabel is \(String(describing: self.textFieldPasswd?.text))");
-        
-        let todo = LCObject(className: "Todo")
-        //注册相关
-        todo.set("title", value: "工程师周会")
-        todo.set("content", value: "每周工程师会议，周一下午 2 点")
-        
-        todo.save { result in
-            switch result {
-            case .success: print("成功")
-                break
-            case .failure(let error):
-                print("错误是:\(error)")
-            }
+        //MARK:- 正则匹配是否是email
+        func checkEmail(phoneNumber: NSString) ->Bool {
+            let phoneRegex: String = "^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$"
+            let pred = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+            let isMatch:Bool = pred.evaluate(with: phoneNumber)
+            return isMatch;
         }
         
+        //判断是用户名登录还是手机号登录
+        if checkEmail(phoneNumber: "\(String(describing: textFieldUsr?.text))" as NSString) {
+            //手机号登录
+            LCUser.logIn(mobilePhoneNumber: "13577778888", password: "leancloud") { result in
+                switch result {
+                case .success:
+                    self.performSegue(withIdentifier: "login", sender: self)  //跳转页面
+                case .failure(let error):
+                    UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "再试一次").show()
+                }
+            }
+        }else{
+            //用户名登录
+            LCUser.logIn(username: (textFieldUsr?.text)!, password: (textFieldPasswd?.text)!) { result in
+                switch result {
+                case .success:
+                    self.performSegue(withIdentifier: "login", sender: self)  //跳转页面
+                case .failure(let error):
+                    UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "再试一次").show()
+                }
+            }
+        }
     }
-
-
+    //进行跳转到注册页面
     @IBAction func btnRegistered(_ sender: UIButton) {
-        //进行跳转到注册页面
         self.performSegue(withIdentifier: "registered", sender: self)
-        
     }
     
     @IBAction func sinaAuth(_ sender: UIButton) {
-
         //获取授权
         ShareSDK.getUserInfo(SSDKPlatformType.typeSinaWeibo) { (state: SSDKResponseState, user: SSDKUser?, error: Error?) in
             switch state{
