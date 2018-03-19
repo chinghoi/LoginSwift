@@ -28,7 +28,6 @@
 		DE3AB27C1DB47A1000C8787E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3AB27B1DB47A1000C8787E /* CoreTelephony.framework */; };
 		E93A2368205D076000F79534 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93A2367205D076000F79534 /* MobileCoreServices.framework */; };
 		E946087B205EA88D00328E08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E946087D205EA88D00328E08 /* Main.storyboard */; };
-		E9506468205BC46D00DD704E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9506467205BC46D00DD704E /* UserInfo.swift */; };
 		E958776F205E59BF00AFD342 /* Registered.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958776E205E59BF00AFD342 /* Registered.swift */; };
 		E97C166820594EA000A716D2 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E97C164120594EA000A716D2 /* WeiboSDK.bundle */; };
 		E97C166920594EA000A716D2 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C164220594EA000A716D2 /* libWeiboSDK.a */; };
@@ -85,7 +84,6 @@
 		DE3AB27B1DB47A1000C8787E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E93A2367205D076000F79534 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E946087C205EA88D00328E08 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		E9506467205BC46D00DD704E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E958776E205E59BF00AFD342 /* Registered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registered.swift; sourceTree = "<group>"; };
 		E97C164120594EA000A716D2 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		E97C164220594EA000A716D2 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				C846E7CC1B6B92AB00522792 /* Login-Bridging-Header.h */,
 				C846E7AB1B6B91B900522792 /* AppDelegate.swift */,
 				C846E7AD1B6B91B900522792 /* ViewController.swift */,
-				E9506467205BC46D00DD704E /* UserInfo.swift */,
 				E958776E205E59BF00AFD342 /* Registered.swift */,
 				C846E7CB1B6B928600522792 /* Other */,
 				C846E7A91B6B91B900522792 /* Supporting Files */,
@@ -559,7 +556,6 @@
 				C846E7AE1B6B91B900522792 /* ViewController.swift in Sources */,
 				E958776F205E59BF00AFD342 /* Registered.swift in Sources */,
 				C846E7AC1B6B91B900522792 /* AppDelegate.swift in Sources */,
-				E9506468205BC46D00DD704E /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
