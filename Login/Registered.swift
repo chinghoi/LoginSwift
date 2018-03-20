@@ -37,7 +37,7 @@ class Registered: ViewController {
         textFieldPhoneNumber.resignFirstResponder()
         
         //正则匹配是否是手机号
-        func checkEmail(phoneNumber: NSString) ->Bool {
+        func checkPhoneNumber(phoneNumber: NSString) ->Bool {
             let phoneRegex: String = "^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$"
             let pred = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
             let isMatch:Bool = pred.evaluate(with: phoneNumber)
@@ -50,10 +50,13 @@ class Registered: ViewController {
             let isMatch:Bool = pred.evaluate(with: email)
             return isMatch;
         }
+        
+        //判断 用户名,密码,邮箱,手机号 是否为空
         if textFieldUser.text!.isEmpty && textFieldPassword.text!.isEmpty && textFieldEmail.text!.isEmpty && textFieldPhoneNumber.text!.isEmpty{
             UIAlertView.init(title: "注册失败", message: "信息不能有空", delegate: self, cancelButtonTitle: "好的").show()
         } else {
-            if checkEmail(email: textFieldEmail.text! as NSString) && checkEmail(phoneNumber: textFieldPhoneNumber.text! as NSString){
+            //判断填入的邮箱和手机号是否正确
+            if checkEmail(email: textFieldEmail.text! as NSString) && checkPhoneNumber(phoneNumber: textFieldPhoneNumber.text! as NSString){
                 //新建一个注册用户信息
                 let randomUser = LCUser()
                 
@@ -61,6 +64,7 @@ class Registered: ViewController {
                 randomUser.password = LCString(textFieldPassword.text!)
                 randomUser.email = LCString(textFieldEmail.text!)
                 randomUser.mobilePhoneNumber = LCString(textFieldPhoneNumber.text!)
+                
                 //保存用户信息,并判断提示
                 randomUser.save { result in
                     switch result {

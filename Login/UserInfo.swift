@@ -46,7 +46,7 @@ class UserInfo: ViewController {
         lableLoginCount.text = "当前登录次数:" + String(count!)
         
         //登录成功,先读取上次登录时间
-        let loginTime   = LCUser.current?.get("lastLoginTime")?.dateValue  // 通过当前登录用户的lastLoginTime字段读取登录次数(此字段为自己在网页管理端新建)
+        let loginTime   = LCUser.current?.get("lastLoginTime")?.dateValue  // 通过当前登录用户的lastLoginTime字段读取登录时间(此字段为自己在网页管理端新建)
         let timeFormatter0 = DateFormatter()
         //设置日期格式
         timeFormatter0.dateFormat = "yyyy-MM-dd HH:mm:ss"
