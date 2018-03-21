@@ -26,7 +26,7 @@ class Registered: ViewController {
     @IBOutlet weak var textFieldPhoneNumber: UITextField!
     
     override func viewDidLoad() {
-    super.viewDidLoad()
+        super.viewDidLoad()
     }
     //注册按钮
     @IBAction override func btnRegistered(_ sender: UIButton) {

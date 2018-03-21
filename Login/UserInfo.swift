@@ -28,7 +28,6 @@ class UserInfo: ViewController {
         lableUserName.text = "用户名:" + (LCUser.current?.username?.value)!
         lablePhoneNum.text = "手机号:" + (LCUser.current?.mobilePhoneNumber?.value)!
         lableEmailAdd.text = "邮箱:" + (LCUser.current?.email?.value)!
-        
         //登录成功,在LeanCloud云端次数加一
         let loginCount   = LCUser.current?.get("loginCount")  // 通过当前登录用户的loginCount字段读取登录次数(此字段为自己在网页管理端新建)
         var count = loginCount?.intValue!  //将数据Int化
@@ -80,7 +79,7 @@ class UserInfo: ViewController {
         }
         
         
-}
+    }
     @IBOutlet weak var imageViewAvatar: UIImageView!
     @IBOutlet weak var lableUserName: UILabel!
     @IBOutlet weak var lablePhoneNum: UILabel!
@@ -98,10 +97,11 @@ class UserInfo: ViewController {
     }
     
     @IBAction func btnLogout(_ sender: UIButton) {
-    
+        
         //注销登录
         LCUser.logOut()
-        //返回上一界面
-        self.dismiss(animated: true, completion: nil)
+        //返回主界面
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
+

@@ -10,7 +10,7 @@ import UIKit
 import LeanCloud
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -70,73 +70,44 @@ class ViewController: UIViewController {
     
     //授权QQ登录
     @IBAction func qqAuth(sender: UIButton) {
-      //此方法无论是否授权过,都会进行授权
+        //此方法无论是否授权过,都会进行授权
         ShareSDK.authorize(SSDKPlatformType.typeQQ, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
             switch state{
-            case SSDKResponseState.success: print("授权成功,用户信息为\(String(describing: user))\n ----- 授权凭证为\(String(describing: user?.credential))")
+            case SSDKResponseState.success:
+                //建立用户信息
+                let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
+                //判断laencloud服务器上是否有QQ的uid,有的话登录并跳转用户中心,无的话跳转绑定用户页面
+                self.userFind(uidType: "uid_qq", uid: qqUser!)
             case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
             case SSDKResponseState.cancel:  print("操作取消")
             default:
                 break
             }
         })
-        //创建查询
-        let query = LCQuery(className: "_User")
-        if ShareSDK.currentUser(SSDKPlatformType.typeQQ) != nil {
-            //建立用户信息
-            let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!
-            //包含查询
-            query.whereKey("uid", .matchedSubstring(qqUser.uid))
-            //查询"_User"表中 "uid"
-            query.find { result in
-                switch result {
-                    // 查询成功 1时 跳转用户中心, 2时跳转绑定页面
-                case .success(let objects):
-                    print(objects.count)
-                break
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        } else {
-            print("为空 ")
-        }
     }
     
     @IBAction func aaa(_ sender: UIButton) {
-        //创建查询
-        let query = LCQuery(className: "TestObject")
-        if ShareSDK.currentUser(SSDKPlatformType.typeQQ) != nil {
-            //建立QQ信息相关
-            let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!
-            //包含查询
-            query.whereKey("uid", .matchedSubstring(qqUser.uid))
-            //查询"_User"表中 "uid"
-            query.find { result in
-                switch result {
-                case .success(let objects):
-                    print(objects.count)
-                break // 查询成功
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        } else {
-            print("为空 ")
-        }
-        
-        
-        
-//        let testObject: LCObject = LCObject(className: "TestObject")
-//        testObject["uid"] = LCString(qqUser.uid)
-//        testObject.save(){ result in  //保存 并返回成功结果
-//            switch result {
-//            case .success:
-//                break
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        let a = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
+        print(a!)
+        //        //判断第三方登录是否绑定服务器帐号------
+        //        //当前if 如果当前登录用户不为空再进行判断
+        //        if ShareSDK.currentUser(SSDKPlatformType.typeQQ) != nil {
+        //            //建立用户信息
+        //            let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
+        //            //包含查询
+        //            //判断laencloud服务器上是否有QQ的uid
+        //            userFind(uidType: "uid_qq", uid: qqUser!)
+        //        }
+        //        let testObject: LCObject = LCObject(className: "TestObject")
+        //        testObject["uid"] = LCString(qqUser.uid)
+        //        testObject.save(){ result in  //保存 并返回成功结果
+        //            switch result {
+        //            case .success:
+        //                break
+        //            case .failure(let error):
+        //                print(error)
+        //            }
+        //        }
     }
     
     //授权微信登录
@@ -176,7 +147,7 @@ class ViewController: UIViewController {
     }
     //获取当前已经授权用户
     @IBAction func searchInfo(_ sender: UIButton) {
-
+        
         let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
         print("获取成功,qq用户信息为\(String(describing: (qqUser?.credential)!))")
         
@@ -185,16 +156,53 @@ class ViewController: UIViewController {
         
         let sinaChatuser = ShareSDK.currentUser(SSDKPlatformType.typeSinaWeibo)
         print("获取成功,微博用户信息为\(String(describing: (sinaChatuser?.credential)!))")
-//        //获取用户授权信息时,若授权,则查询,反之 ,将会跳转到授权页面
-//        ShareSDK.getUserInfo(SSDKPlatformType.typeQQ) { (state: SSDKResponseState, user: SSDKUser?, error: Error?)  ->
-//            Void in
-//            switch state{
-//            case SSDKResponseState.success: print("获取成功,用户信息为\(String(describing: user))\n ----- 获取凭证为\(String(describing: user?.credential))\n----- 验证平台为\(String(describing: user?.verifyType))")
-//            case SSDKResponseState.fail:    print("获取失败,错误描述:\(String(describing: error))")
-//            case SSDKResponseState.cancel:  print("操作取消")
-//            default: break
-//            }
-//        }
+        //        //获取用户授权信息时,若授权,则查询,反之 ,将会跳转到授权页面
+        //        ShareSDK.getUserInfo(SSDKPlatformType.typeQQ) { (state: SSDKResponseState, user: SSDKUser?, error: Error?)  ->
+        //            Void in
+        //            switch state{
+        //            case SSDKResponseState.success: print("获取成功,用户信息为\(String(describing: user))\n ----- 获取凭证为\(String(describing: user?.credential))\n----- 验证平台为\(String(describing: user?.verifyType))")
+        //            case SSDKResponseState.fail:    print("获取失败,错误描述:\(String(describing: error))")
+        //            case SSDKResponseState.cancel:  print("操作取消")
+        //            default: break
+        //            }
+        //        }
+    }
+    
+    //用户查询类
+    func userFind(uidType: String, uid: String) {
+        //创建查询
+        let query = LCQuery(className: "_User")
+        //创建返回结果
+        var count = 0
+        //包含查询
+        query.whereKey(uidType, .matchedSubstring(uid))
+        //查询"_User"表中 "uid_qq"列是否有匹配的项
+        query.find { result in
+            switch result {
+            // 查询成功 为0时 跳转绑定页面, 非0时 跳转用户中心
+            case .success(let objects):
+                count = objects.count
+                if count != 0 {
+                    //登录并跳转用户中心
+                    let user = ShareSDK.currentUser(SSDKPlatformType.typeQQ).credential.token!
+                    LCUser.logIn(sessionToken: user){ result in  //保存 并返回成功结果
+                        switch result {
+                        case .success:
+                            break
+                        case .failure(let error):
+                            UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
+                        }
+                    }
+                    self.performSegue(withIdentifier: "login", sender: self)
+                } else {
+                    //跳转到绑定页面,进行和服务器帐号绑定
+                    self.performSegue(withIdentifier: "binding", sender: self)
+                }
+                break
+            case .failure(let error):
+                UIAlertView.init(title: "查询绑定信息失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
+            }
+        }
     }
 }
 
