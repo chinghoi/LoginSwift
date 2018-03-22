@@ -39,36 +39,70 @@ class WeiboUserInfo: ViewController {
         default:
             break
         }
-        let aboutMe = wiboUser?.aboutMe
-        if aboutMe != nil {
-            lableAboutMe.text = "用户简介:" + (wiboUser?.aboutMe)!
-        } else {
-            lableAboutMe.text = "用户简介: 无信息"
+        //登录成功,在LeanCloud云端次数加一
+        let loginCount   = LCUser.current?.get("loginCount")  // 通过当前登录用户的loginCount字段读取登录次数(此字段为自己在网页管理端新建)
+        var count = loginCount?.intValue!  //将数据Int化
+        count! = count! + 1  //登录成功本地自增一
+        LCUser.current?.set("loginCount", value: count!)  //设置服务器端相应数据
+        LCUser.current?.save { result in  //保存 并返回成功结果
+            switch result {
+            case .success:print("++++++------------------+++++++++++++++++++++++++")
+                break
+            case .failure(let error):
+                print(error)
+            }
         }
+        //在界面显示登录次数
+        lableLoginCount.text = "当前登录次数:" + String(count!)
         
-        
-        let birthday   = wiboUser?.birthday
+        //登录成功,先读取上次登录时间
+        let loginTime   = LCUser.current?.get("lastLoginTime")?.dateValue  // 通过当前登录用户的lastLoginTime字段读取登录时间(此字段为自己在网页管理端新建)
         let timeFormatter0 = DateFormatter()
         //设置日期格式
         timeFormatter0.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        //判断生日信息是否为空,防止程序崩溃
-        if birthday != nil {
+        //判断上次登录时间是否为空
+        if loginTime != nil {
             //转换为String
-            let strbirthday = timeFormatter0.string(from: birthday!) as String
-            //在界面显示生日信息
-            lableBirthday.text = "生日:" + strbirthday
+            let strLastLoginTime = timeFormatter0.string(from: loginTime!) as String
+            //在界面显示上次登录时间
+            lableLastLoginTime.text = strLastLoginTime
         } else {
-            lableBirthday.text = "无生日信息"
+            lableLastLoginTime.text = "第一次登录"
         }
         
+        let date = Date()
+        let timeFormatter = DateFormatter()
+        //设置日期格式
+        timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //转换为String
+        let strNowTime = timeFormatter.string(from: date) as String
+        //转换为LCDate(LeanCloud可识别的格式)
+        let reminder = dateWithString(string: strNowTime)
+        //上传到服务器端相应位置
+        LCUser.current?.set("lastLoginTime", value: reminder)
+        LCUser.current?.save { result in  //保存 并返回成功结果
+            switch result {
+            case .success:print("----------------------+++++++++++++++++++++++++++++++")
+                break
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     @IBOutlet weak var imageViewAvatar: UIImageView!
     @IBOutlet weak var lableUserName: UILabel!
     @IBOutlet weak var lableGender: UILabel!
-    @IBOutlet weak var lableAboutMe: UILabel!
-    @IBOutlet weak var lableBirthday: UILabel!
+    @IBOutlet weak var lableLoginCount: UILabel!
+    @IBOutlet weak var lableLastLoginTime: UILabel!
     
-    
+    //数据转换操作 String -> LCDate
+    func dateWithString(string: String) -> LCDate {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let date = LCDate(dateFormatter.date(from: string)!)
+        return date
+    }
     @IBAction func btnLogout(_ sender: UIButton) {
         
         //注销登录

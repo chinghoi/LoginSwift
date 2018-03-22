@@ -83,8 +83,6 @@ class UserInfo: ViewController {
                 print(error)
             }
         }
-        
-        
     }
     @IBOutlet weak var imageViewAvatar: UIImageView!
     @IBOutlet weak var lableUserName: UILabel!
@@ -109,5 +107,6 @@ class UserInfo: ViewController {
         //返回主界面
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
+
 }
 

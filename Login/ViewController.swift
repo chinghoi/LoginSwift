@@ -70,77 +70,111 @@ class ViewController: UIViewController {
     
     //授权QQ登录
     @IBAction func qqAuth(sender: UIButton) {
-        //此方法无论是否授权过,都会进行授权
-        ShareSDK.authorize(SSDKPlatformType.typeQQ, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
-            switch state{
-            case SSDKResponseState.success: //跳转页面
-                self.performSegue(withIdentifier: "loginToQQ", sender: self)
-//                //建立用户信息
-//                let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
-//                //判断laencloud服务器上是否有QQ的uid,有的话登录并跳转用户中心,无的话跳转绑定用户页面
-//                self.userFind(uidType: "uid_qq", uid: qqUser!)
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
-            case SSDKResponseState.cancel:  print("操作取消")
-            default:
-                break
-            }
-        })
-    }
-    //添加新功能测试按钮,可移除
-    @IBAction func aaa(_ sender: UIButton) {
-        let a = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
-        if a != nil {
-            print(a!)
+        let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
+        //不为空直接登录 为空进行注册
+        if qqUser?.credential != nil {
+            //登录
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeQQ, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    print((user?.credential.uid)!)
+                    print((user?.credential.token)!)
+                    //登录
+                    self.login(username: (user?.credential.uid)!, password: (user?.credential.token)!, tiaozhuan: "loginToQQ")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
+        } else {
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeQQ, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    print((user?.credential.uid)!)
+                    print((user?.credential.token)!)
+                    //注册并登录
+                    self.registered(username: (user?.credential.uid)!, password: (user?.credential.token)!, tiaozhuan: "loginToQQ")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
         }
-        //        //判断第三方登录是否绑定服务器帐号------
-        //        //当前if 如果当前登录用户不为空再进行判断
-        //        if ShareSDK.currentUser(SSDKPlatformType.typeQQ) != nil {
-        //            //建立用户信息
-        //            let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
-        //            //包含查询
-        //            //判断laencloud服务器上是否有QQ的uid
-        //            userFind(uidType: "uid_qq", uid: qqUser!)
-        //        }
-        //        let testObject: LCObject = LCObject(className: "TestObject")
-        //        testObject["uid"] = LCString(qqUser.uid)
-        //        testObject.save(){ result in  //保存 并返回成功结果
-        //            switch result {
-        //            case .success:
-        //                break
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        }
-    }
-    
+    }   
     //授权微信登录
     @IBAction func weChatAuth(_ sender: UIButton) {
-        //此方法无论是否授权过,都会进行授权
-        ShareSDK.authorize(SSDKPlatformType.typeWechat, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
-            switch state{
-            case SSDKResponseState.success: //跳转页面
-                self.performSegue(withIdentifier: "loginToWECHAT", sender: self)
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
-            case SSDKResponseState.cancel:  print("操作取消")
-            default:
-                break
-            }
-        })
+        let wechatUser = ShareSDK.currentUser(SSDKPlatformType.typeWechat)
+        //不为空直接登录 为空进行注册
+        if wechatUser?.credential != nil {
+            //登录
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeWechat, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    //登录
+                    self.login(username: (user?.credential.uid)!, password: "123456", tiaozhuan: "loginToWECHAT")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
+        } else {
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeWechat, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    //注册并登录
+                    self.registered(username: (user?.credential.uid)!, password: "123456", tiaozhuan: "loginToWECHAT")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
+        }
     }
     
     //授权微博登录
     @IBAction func sinaAuth(_ sender: UIButton) {
-        //此方法无论是否授权过,都会进行授权
-        ShareSDK.authorize(SSDKPlatformType.typeSinaWeibo, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
-            switch state{
-            case SSDKResponseState.success: //跳转页面
-                self.performSegue(withIdentifier: "loginToWEIBO", sender: self)
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
-            case SSDKResponseState.cancel:  print("操作取消")
-            default:
-                break
-            }
-        })
+        let weiboUser = ShareSDK.currentUser(SSDKPlatformType.typeSinaWeibo)
+        //不为空直接登录 为空进行注册
+        if weiboUser?.credential != nil {
+            //登录
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeSinaWeibo, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    print((user?.credential.uid)!)
+                    print((user?.credential.token)!)
+                    //登录
+                    self.login(username: (user?.credential.uid)!, password: (user?.credential.token)!, tiaozhuan: "loginToWEIBO")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
+        } else {
+            //此方法无论是否授权过,都会进行授权
+            ShareSDK.authorize(SSDKPlatformType.typeSinaWeibo, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+                switch state{
+                case SSDKResponseState.success:
+                    print((user?.credential.uid)!)
+                    print((user?.credential.token)!)
+                    //注册并登录
+                    self.registered(username: (user?.credential.uid)!, password: (user?.credential.token)!, tiaozhuan: "loginToWEIBO")
+                case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
+                case SSDKResponseState.cancel:  print("操作取消")
+                default:
+                    break
+                }
+            })
+        }
     }
     
     //取消全部平台授权
@@ -176,7 +210,7 @@ class ViewController: UIViewController {
         //            }
         //        }
     }
-    //SDK达不到使用要求,不能完成第三方登录创建帐号功能,暂时不跳转绑定界面,以下可删除
+//    //SDK达不到使用要求,不能完成第三方登录创建帐号功能,暂时不跳转绑定界面,以下可删除
 //    //用户查询类
 //    func userFind(uidType: String, uid: String) {
 //        //创建查询
@@ -213,6 +247,38 @@ class ViewController: UIViewController {
 //            }
 //        }
 //    }
+    //登录方法
+    func login(username: String, password: String, tiaozhuan: String) {
+        LCUser.logIn(username: username, password: password) { result in
+            switch result {
+            case .success:
+                print("////////////-----------------//////////////////////")
+                self.performSegue(withIdentifier: tiaozhuan, sender: self)
+                break
+            case .failure(let error):
+                UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "再试一次").show()
+            }
+        }
+    }
+    //注册
+    func registered(username: String, password: String, tiaozhuan: String) {
+        //新建一个注册用户信息
+        let randomUser = LCUser()
+        
+        randomUser.username = LCString(username)
+        randomUser.password = LCString(password)
+        
+        //保存用户信息,并判断提示
+        randomUser.save { result in
+            switch result {
+            case .success:
+                print("//////////////////////////////////")
+                self.login(username: username, password: password, tiaozhuan: tiaozhuan)
+            case .failure(let error):
+                UIAlertView.init(title: "第一次登录注册失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
+            }
+        }
+    }
 }
 
 

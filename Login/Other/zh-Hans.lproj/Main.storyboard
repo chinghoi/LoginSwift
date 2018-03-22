@@ -110,14 +110,6 @@
                                     <action selector="btnRegistered:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6II-OL-s7C"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7e-QU-ZwR">
-                                <rect key="frame" x="164" y="243" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="aaa:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vDi-x9-HKr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -429,6 +421,7 @@
         <!--Binding-->
         <scene sceneID="AMk-Cl-ZWx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lEB-Q6-gyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="hbY-Eg-cjb" customClass="Binding" customModule="Login" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0JB-dj-KSX"/>
@@ -442,11 +435,7 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="绑定帐号" id="aNC-9f-7hS">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="1PD-yE-yBX">
-                                            <connections>
-                                                <action selector="back:" destination="hbY-Eg-cjb" id="mWo-cD-rSR"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="1PD-yE-yBX"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -474,9 +463,6 @@
                                     <constraint firstAttribute="width" constant="46" id="JOG-ZC-tHl"/>
                                 </constraints>
                                 <state key="normal" title="绑定"/>
-                                <connections>
-                                    <action selector="btnBinding:" destination="hbY-Eg-cjb" eventType="touchUpInside" id="jRe-RZ-oJ8"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="20W-9c-Uwy">
                                 <rect key="frame" x="164.5" y="213.5" width="149.5" height="30"/>
@@ -509,12 +495,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textFieldPassword" destination="20W-9c-Uwy" id="dTD-bd-qLu"/>
-                        <outlet property="textFieldUser" destination="a39-Yu-V5R" id="xmg-oA-H24"/>
                         <segue destination="4cN-I7-xaS" kind="modal" identifier="bindingUserInfo" id="24Q-pr-mj4"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lEB-Q6-gyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-62" y="282"/>
         </scene>
@@ -620,15 +603,15 @@
                     </view>
                     <connections>
                         <outlet property="imageViewAvatar" destination="AmL-LF-APf" id="H1l-Dz-fee"/>
-                        <outlet property="lableAboutMe" destination="3Hj-b9-nA0" id="r9b-mq-oC9"/>
-                        <outlet property="lableBirthday" destination="GgU-ww-fNJ" id="iMu-fT-rlX"/>
                         <outlet property="lableGender" destination="gqk-mk-fFu" id="TE8-p2-LhW"/>
+                        <outlet property="lableLastLoginTime" destination="GgU-ww-fNJ" id="aYE-ux-K2O"/>
+                        <outlet property="lableLoginCount" destination="3Hj-b9-nA0" id="uU9-cT-70a"/>
                         <outlet property="lableUserName" destination="xa0-Hx-gm6" id="MPA-Ag-rF5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kyh-yh-jDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-706" y="1267"/>
+            <point key="canvasLocation" x="-706.5" y="1266.5"/>
         </scene>
         <!--Weibo User Info-->
         <scene sceneID="WcS-BY-5VV">
@@ -730,9 +713,9 @@
                     </view>
                     <connections>
                         <outlet property="imageViewAvatar" destination="y6U-bP-KGE" id="6Nu-rP-dxq"/>
-                        <outlet property="lableAboutMe" destination="J6r-jq-DQR" id="aX4-eH-QoW"/>
-                        <outlet property="lableBirthday" destination="h0n-fb-ooA" id="cH8-Nt-XS1"/>
                         <outlet property="lableGender" destination="Kmi-xG-vUP" id="cVd-6j-u06"/>
+                        <outlet property="lableLastLoginTime" destination="h0n-fb-ooA" id="5a4-58-Wy5"/>
+                        <outlet property="lableLoginCount" destination="J6r-jq-DQR" id="76Q-rD-V8d"/>
                         <outlet property="lableUserName" destination="f70-RU-Vhz" id="CRS-Gp-22f"/>
                     </connections>
                 </viewController>
@@ -743,7 +726,6 @@
         <!--User Info-->
         <scene sceneID="edS-si-Mje">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w4T-u1-Gts" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="lIU-9n-pVC" customClass="QQUserInfo" customModule="Login" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nic-e6-2UC"/>
@@ -843,12 +825,13 @@
                     </view>
                     <connections>
                         <outlet property="imageViewAvatar" destination="Bxr-fN-lVC" id="NJS-81-ov2"/>
-                        <outlet property="lableAboutMe" destination="ksV-Et-CQF" id="mjS-Pe-0Fm"/>
-                        <outlet property="lableBirthday" destination="kq2-GO-BP6" id="KWY-bC-W1u"/>
                         <outlet property="lableGender" destination="nkw-Fe-HpK" id="rXu-ii-grk"/>
+                        <outlet property="lableLastLoginTime" destination="kq2-GO-BP6" id="JT8-SL-bCh"/>
+                        <outlet property="lableLoginCount" destination="ksV-Et-CQF" id="Qog-gJ-ehr"/>
                         <outlet property="lableUserName" destination="Ims-Ke-MxV" id="Zmi-Ap-WKQ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4T-u1-Gts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1206.5" y="1266.5"/>
         </scene>
