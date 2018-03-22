@@ -16,13 +16,18 @@ class UserInfo: ViewController {
         //加载头像------
         let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
         //网址可选值String转URL
-        let url = URL(string: (qqUser?.icon)!)
-        //数据化网址
-        let data = try! Data(contentsOf: url!)
-        //通过数据流初始化图片
-        let newImage = UIImage(data: data)
-        //添加图片到image视图
-        imageViewAvatar.addSubview(UIImageView(image:newImage))
+        if qqUser?.icon != nil {
+            let url = URL(string: (qqUser?.icon)!)
+            //数据化网址
+            let data = try! Data(contentsOf: url!)
+            //通过数据流初始化图片
+            let newImage = UIImage(data: data)
+            //添加图片到image视图
+            imageViewAvatar.addSubview(UIImageView(image:newImage))
+        } else {
+            UIAlertView.init(title: "头像加载失败", message: "错误:登录QQ后会采用QQ的头像", delegate: self, cancelButtonTitle: "好的").show()
+        }
+        
         //------------
         //在服务器获取当前登录用户的信息
         lableUserName.text = "用户名:" + (LCUser.current?.username?.value)!

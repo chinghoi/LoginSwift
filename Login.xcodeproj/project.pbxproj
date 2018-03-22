@@ -55,6 +55,9 @@
 		E97C167E20594EA000A716D2 /* SinaWeiboConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C166420594EA000A716D2 /* SinaWeiboConnector.framework */; };
 		E97C167F20594EA000A716D2 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C166520594EA000A716D2 /* ShareSDK.framework */; };
 		E97C168020594EA000A716D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C166720594EA000A716D2 /* MOBFoundation.framework */; };
+		E9CA87BC2063B2C000571B0F /* QQUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA87BB2063B2C000571B0F /* QQUserInfo.swift */; };
+		E9CA87BE2063B2E300571B0F /* WechatUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA87BD2063B2E300571B0F /* WechatUserInfo.swift */; };
+		E9CA87C02063B2FA00571B0F /* WeiboUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA87BF2063B2FA00571B0F /* WeiboUserInfo.swift */; };
 		E9CBDCDF205FEA8B0092ADDC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CBDCDE205FEA8B0092ADDC /* UserInfo.swift */; };
 		E9F75B83205D80F400AC1528 /* LeanCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F75B82205D80F400AC1528 /* LeanCloud.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +123,9 @@
 		E97C166420594EA000A716D2 /* SinaWeiboConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinaWeiboConnector.framework; sourceTree = "<group>"; };
 		E97C166520594EA000A716D2 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		E97C166720594EA000A716D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		E9CA87BB2063B2C000571B0F /* QQUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QQUserInfo.swift; sourceTree = "<group>"; };
+		E9CA87BD2063B2E300571B0F /* WechatUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WechatUserInfo.swift; sourceTree = "<group>"; };
+		E9CA87BF2063B2FA00571B0F /* WeiboUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboUserInfo.swift; sourceTree = "<group>"; };
 		E9CBDCDE205FEA8B0092ADDC /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E9F75B82205D80F400AC1528 /* LeanCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LeanCloud.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +244,9 @@
 				C846E7AD1B6B91B900522792 /* ViewController.swift */,
 				E958776E205E59BF00AFD342 /* Registered.swift */,
 				E9CBDCDE205FEA8B0092ADDC /* UserInfo.swift */,
+				E9CA87BB2063B2C000571B0F /* QQUserInfo.swift */,
+				E9CA87BD2063B2E300571B0F /* WechatUserInfo.swift */,
+				E9CA87BF2063B2FA00571B0F /* WeiboUserInfo.swift */,
 				E964673C20615F1900A580E6 /* Binding.swift */,
 				C846E7CB1B6B928600522792 /* Other */,
 				C846E7A91B6B91B900522792 /* Supporting Files */,
@@ -506,13 +515,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Login/Pods-Login-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/LeanCloud/LeanCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/LeanCloudSocial/LeanCloudSocial.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeanCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeanCloudSocial.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -561,9 +574,12 @@
 			files = (
 				E9CBDCDF205FEA8B0092ADDC /* UserInfo.swift in Sources */,
 				C846E7AE1B6B91B900522792 /* ViewController.swift in Sources */,
+				E9CA87BC2063B2C000571B0F /* QQUserInfo.swift in Sources */,
+				E9CA87BE2063B2E300571B0F /* WechatUserInfo.swift in Sources */,
 				E958776F205E59BF00AFD342 /* Registered.swift in Sources */,
 				C846E7AC1B6B91B900522792 /* AppDelegate.swift in Sources */,
 				E964673D20615F1900A580E6 /* Binding.swift in Sources */,
+				E9CA87C02063B2FA00571B0F /* WeiboUserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +747,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Login-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Login-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -774,7 +790,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Login-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Login-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

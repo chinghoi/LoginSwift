@@ -73,11 +73,12 @@ class ViewController: UIViewController {
         //此方法无论是否授权过,都会进行授权
         ShareSDK.authorize(SSDKPlatformType.typeQQ, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
             switch state{
-            case SSDKResponseState.success:
-                //建立用户信息
-                let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
-                //判断laencloud服务器上是否有QQ的uid,有的话登录并跳转用户中心,无的话跳转绑定用户页面
-                self.userFind(uidType: "uid_qq", uid: qqUser!)
+            case SSDKResponseState.success: //跳转页面
+                self.performSegue(withIdentifier: "loginToQQ", sender: self)
+//                //建立用户信息
+//                let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)!.uid
+//                //判断laencloud服务器上是否有QQ的uid,有的话登录并跳转用户中心,无的话跳转绑定用户页面
+//                self.userFind(uidType: "uid_qq", uid: qqUser!)
             case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
             case SSDKResponseState.cancel:  print("操作取消")
             default:
@@ -115,7 +116,8 @@ class ViewController: UIViewController {
         //此方法无论是否授权过,都会进行授权
         ShareSDK.authorize(SSDKPlatformType.typeWechat, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
             switch state{
-            case SSDKResponseState.success: print("授权成功,用户信息为\(String(describing: user))\n ----- 授权凭证为\(String(describing: user?.credential))")
+            case SSDKResponseState.success: //跳转页面
+                self.performSegue(withIdentifier: "loginToWECHAT", sender: self)
             case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
             case SSDKResponseState.cancel:  print("操作取消")
             default:
@@ -129,7 +131,8 @@ class ViewController: UIViewController {
         //此方法无论是否授权过,都会进行授权
         ShareSDK.authorize(SSDKPlatformType.typeSinaWeibo, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
             switch state{
-            case SSDKResponseState.success: print("授权成功,用户信息为\(String(describing: user))\n ----- 授权凭证为\(String(describing: user?.credential))")
+            case SSDKResponseState.success: //跳转页面
+                self.performSegue(withIdentifier: "loginToWEIBO", sender: self)
             case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
             case SSDKResponseState.cancel:  print("操作取消")
             default:
@@ -168,42 +171,42 @@ class ViewController: UIViewController {
         //        }
     }
     
-    //用户查询类
-    func userFind(uidType: String, uid: String) {
-        //创建查询
-        let query = LCQuery(className: "_User")
-        //创建返回结果
-        var count = 0
-        //包含查询
-        query.whereKey(uidType, .matchedSubstring(uid))
-        //查询"_User"表中 "uid_qq"列是否有匹配的项
-        query.find { result in
-            switch result {
-            // 查询成功 为0时 跳转绑定页面, 非0时 跳转用户中心
-            case .success(let objects):
-                count = objects.count
-                if count != 0 {
-                    //登录并跳转用户中心
-                    let user = ShareSDK.currentUser(SSDKPlatformType.typeQQ).credential.token!
-                    LCUser.logIn(sessionToken: user){ result in  //保存 并返回成功结果
-                        switch result {
-                        case .success:
-                            break
-                        case .failure(let error):
-                            UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
-                        }
-                    }
-                    self.performSegue(withIdentifier: "login", sender: self)
-                } else {
-                    //跳转到绑定页面,进行和服务器帐号绑定
-                    self.performSegue(withIdentifier: "binding", sender: self)
-                }
-                break
-            case .failure(let error):
-                UIAlertView.init(title: "查询绑定信息失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
-            }
-        }
-    }
+//    //用户查询类
+//    func userFind(uidType: String, uid: String) {
+//        //创建查询
+//        let query = LCQuery(className: "_User")
+//        //创建返回结果
+//        var count = 0
+//        //包含查询
+//        query.whereKey(uidType, .matchedSubstring(uid))
+//        //查询"_User"表中 "uid_qq"列是否有匹配的项
+//        query.find { result in
+//            switch result {
+//            // 查询成功 为0时 跳转绑定页面, 非0时 跳转用户中心
+//            case .success(let objects):
+//                count = objects.count
+//                if count != 0 {
+//                    //登录并跳转用户中心
+//                    let user = ShareSDK.currentUser(SSDKPlatformType.typeQQ).credential.token!
+//                    LCUser.logIn(sessionToken: user){ result in  //保存 并返回成功结果
+//                        switch result {
+//                        case .success:
+//                            break
+//                        case .failure(let error):
+//                            UIAlertView.init(title: "登录失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
+//                        }
+//                    }
+//                    self.performSegue(withIdentifier: "login", sender: self)
+//                } else {
+//                    //跳转到绑定页面,进行和服务器帐号绑定
+//                    self.performSegue(withIdentifier: "binding", sender: self)
+//                }
+//                break
+//            case .failure(let error):
+//                UIAlertView.init(title: "查询绑定信息失败", message: "错误:\(error)", delegate: self, cancelButtonTitle: "好的").show()
+//            }
+//        }
+//    }
 }
 
 

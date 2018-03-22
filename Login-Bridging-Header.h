@@ -39,6 +39,11 @@
 //以下是新郎微博SDK的依赖库：
 //ImageIO.framework
 
+// 静态库方式引入
+
+#import <AVOSCloud/AVOSCloud.h>
+
+
 
 #import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 #import <ShareSDKExtension/SSEShareHelper.h>
@@ -53,5 +58,7 @@
 #import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 
 #endif
+
+
 
 
