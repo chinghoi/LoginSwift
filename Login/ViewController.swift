@@ -86,10 +86,12 @@ class ViewController: UIViewController {
             }
         })
     }
-    
+    //添加新功能测试按钮,可移除
     @IBAction func aaa(_ sender: UIButton) {
         let a = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
-        print(a!)
+        if a != nil {
+            print(a!)
+        }
         //        //判断第三方登录是否绑定服务器帐号------
         //        //当前if 如果当前登录用户不为空再进行判断
         //        if ShareSDK.currentUser(SSDKPlatformType.typeQQ) != nil {
@@ -152,13 +154,17 @@ class ViewController: UIViewController {
     @IBAction func searchInfo(_ sender: UIButton) {
         
         let qqUser = ShareSDK.currentUser(SSDKPlatformType.typeQQ)
-        print("获取成功,qq用户信息为\(String(describing: (qqUser?.credential)!))")
-        
         let weChatuser = ShareSDK.currentUser(SSDKPlatformType.typeWechat)
-        print("获取成功,微信用户信息为\(String(describing: (weChatuser?.credential)!))")
-        
         let sinaChatuser = ShareSDK.currentUser(SSDKPlatformType.typeSinaWeibo)
-        print("获取成功,微博用户信息为\(String(describing: (sinaChatuser?.credential)!))")
+        //防止 ! nil 引起崩溃
+        if qqUser?.credential != nil && weChatuser?.credential != nil && sinaChatuser?.credential != nil {
+            UIAlertView.init(title: "查询成功", message: "详细请看输出台", delegate: self, cancelButtonTitle: "好的").show()
+            print("获取成功,qq用户信息为\(String(describing: (qqUser?.credential)!))")
+            print("获取成功,微信用户信息为\(String(describing: (weChatuser?.credential)!))")
+            print("获取成功,微博用户信息为\(String(describing: (sinaChatuser?.credential)!))")
+        } else {
+            UIAlertView.init(title: "查询失败", message: "错误:QQ微信微博至少有一个没登录", delegate: self, cancelButtonTitle: "再试一次").show()
+        }
         //        //获取用户授权信息时,若授权,则查询,反之 ,将会跳转到授权页面
         //        ShareSDK.getUserInfo(SSDKPlatformType.typeQQ) { (state: SSDKResponseState, user: SSDKUser?, error: Error?)  ->
         //            Void in
@@ -170,7 +176,7 @@ class ViewController: UIViewController {
         //            }
         //        }
     }
-    
+    //SDK达不到使用要求,不能完成第三方登录创建帐号功能,暂时不跳转绑定界面,以下可删除
 //    //用户查询类
 //    func userFind(uidType: String, uid: String) {
 //        //创建查询

@@ -9,6 +9,7 @@
 import UIKit
 import LeanCloud
 
+//以下功能无法完成,可删除
 //第三方登录未注册时跳转界面
 class Binding: ViewController {
     //服务器帐号数据接口

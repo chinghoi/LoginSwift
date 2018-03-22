@@ -9,6 +9,7 @@
 import UIKit
 import LeanCloud
 
+//微信用户信息
 class WechatUserInfo: ViewController {
     
     override func viewDidLoad() {

@@ -9,6 +9,7 @@
 import UIKit
 import LeanCloud
 
+//用户信息
 class UserInfo: ViewController {
     
     override func viewDidLoad() {

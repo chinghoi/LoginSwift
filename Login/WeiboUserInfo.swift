@@ -9,6 +9,7 @@
 import UIKit
 import LeanCloud
 
+//微博用户信息
 class WeiboUserInfo: ViewController {
     
     override func viewDidLoad() {

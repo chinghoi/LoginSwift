@@ -9,6 +9,7 @@
 import UIKit
 import LeanCloud
 
+//QQ用户信息
 class QQUserInfo: ViewController {
     
     override func viewDidLoad() {
